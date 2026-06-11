@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Клінінг Ужгород — Чисто. Швидко. З гарантією.</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f9fb;
+    --white: #ffffff;
+    --teal: #1a9e82;
+    --teal-light: #e6f7f3;
+    --teal-dark: #107a63;
+    --blue-soft: #eaf4fb;
+    --text: #0d1f2d;
+    --muted: #637381;
+    --border: #dde9f0;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--teal);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 18px;
+  }
+  .nav-cta {
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s;
+  }
+  .nav-cta:hover { background: var(--teal-dark); }
+
+  /* HERO */
+  .hero {
+    background: var(--white);
+    padding: 72px 24px 80px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--teal); }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 16px 32px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--teal);
+    border: 2px solid var(--teal);
+    border-radius: var(--radius-sm);
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--teal-light); }
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 44px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--muted); font-weight: 500;
+  }
+  .trust-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--teal);
+  }
+
+  /* STATS */
+  .stats {
+    background: var(--teal);
+    padding: 40px 24px;
+  }
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 42px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 6px;
+  }
+
+  /* SECTION */
+  section { padding: 72px 24px; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 13px; font-weight: 600; color: var(--teal);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text);
+    max-width: 560px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .section-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 48px;
+    line-height: 1.65;
+  }
+
+  /* SERVICES */
+  .services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .service-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: box-shadow 0.18s, border-color 0.18s;
+  }
+  .service-card:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 24px rgba(26,158,130,0.1);
+  }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--teal-light);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+  .service-card h3 {
+    font-size: 19px; font-weight: 700; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: 15px; color: var(--muted); line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .service-tag {
+    display: inline-block;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-size: 12px; font-weight: 600;
+    padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* VALUE STACK */
+  .value-bg { background: var(--blue-soft); }
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .value-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .value-number {
+    font-size: 13px; font-weight: 700; color: var(--teal);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+  }
+  .value-card h3 {
+    font-size: 20px; font-weight: 800; color: var(--text);
+    margin-bottom: 10px; line-height: 1.2;
+  }
+  .value-card p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+  /* PROCESS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+  .process-step {
+    padding: 24px 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    position: relative;
+  }
+  .process-step + .process-step { margin-top: 0; }
+  .step-circle {
+    width: 52px; height: 52px;
+    background: var(--teal);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .process-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .process-step p { font-size: 14px; color: var(--muted); }
+
+  /* BEFORE/AFTER */
+  .ba-section { background: var(--white); }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .ba-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .ba-label {
+    padding: 10px 16px;
+    font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .ba-label.before { background: #fff0f0; color: #c0392b; }
+  .ba-label.after { background: var(--teal-light); color: var(--teal-dark); }
+  .ba-visual {
+    height: 200px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px; font-size: 14px; color: var(--muted);
+    background: var(--bg);
+    padding: 20px;
+    text-align: center;
+  }
+  .ba-visual.after-v { background: #f0faf7; }
+  .ba-emoji { font-size: 48px; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .testi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .stars { color: #f59e0b; font-size: 18px; margin-bottom: 12px; }
+  .testi-card p { font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 16px; }
+  .testi-author {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--teal); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; flex-shrink: 0;
+  }
+  .author-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .author-meta { font-size: 12px; color: var(--muted); }
+
+  /* GUARANTEE */
+  .guarantee {
+    background: var(--teal);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .guarantee h2 {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800; color: white;
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .guarantee p { font-size: 17px; color: rgba(255,255,255,0.85); max-width: 540px; margin: 0 auto 32px; }
+  .guarantee-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .g-card {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    min-width: 180px;
+    flex: 1;
+  }
+  .g-card-icon { font-size: 28px; margin-bottom: 8px; }
+  .g-card-title { font-size: 15px; font-weight: 700; color: white; }
+  .g-card-desc { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 720px; }
+  .faq-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 18px 20px;
+    font-size: 16px; font-weight: 600; color: var(--text);
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    user-select: none;
+  }
+  .faq-q:hover { background: var(--bg); }
+  .faq-arrow { font-size: 18px; color: var(--teal); transition: transform 0.2s; }
+  .faq-a {
+    padding: 0 20px;
+    font-size: 15px; color: var(--muted); line-height: 1.65;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 18px; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--white);
+    padding: 80px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .cta-section h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800; color: var(--text);
+    margin-bottom: 14px; line-height: 1.15; letter-spacing: -0.02em;
+  }
+  .cta-section h2 span { color: var(--teal); }
+  .cta-section p { font-size: 17px; color: var(--muted); max-width: 480px; margin: 0 auto 36px; }
+  .cta-buttons {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px;
+  }
+  .btn-tg {
+    background: #2CA5E0; color: white; border: none;
+    border-radius: var(--radius-sm); padding: 16px 28px;
+    font-size: 17px; font-weight: 700; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    transition: opacity 0.18s;
+  }
+  .btn-tg:hover { opacity: 0.9; }
+  .btn-phone {
+    background: var(--teal); color: white; border: none;
+    border-radius: var(--radius-sm); padding: 16px 28px;
+    font-size: 17px; font-weight: 700; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    transition: background 0.18s;
+  }
+  .btn-phone:hover { background: var(--teal-dark); }
+  .cta-note { font-size: 14px; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: #0d1f2d;
+    color: rgba(255,255,255,0.6);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 14px;
+  }
+  footer strong { color: white; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .ba-grid { grid-template-columns: 1fr; }
+    .process-steps { gap: 12px; }
+    .hero { padding: 48px 16px 56px; }
+    section { padding: 52px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">✦</div>
+    <span>Клінінг Ужгород</span>
+  </a>
+  <a href="#cta" class="nav-cta">Замовити прибирання</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✓ Понад 500 задоволених клієнтів в Ужгороді</div>
+  <h1>Ваш дім — <span>чистий</span><br>вже сьогодні</h1>
+  <p class="hero-sub">Прибираємо квартири, офіси та меблі. Ви відчиняєте двері — ми робимо решту. Результат з гарантією повернення грошей.</p>
+  <div class="hero-actions">
+    <a href="#cta" class="btn-primary">Замовити прибирання →</a>
+    <a href="#services" class="btn-secondary">Дивитись послуги</a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item"><div class="trust-dot"></div>Приїжджаємо в день замовлення</div>
+    <div class="trust-item"><div class="trust-dot"></div>Перевірений персонал</div>
+    <div class="trust-item"><div class="trust-dot"></div>Гарантія якості або повернення грошей</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">500+</div>
+      <div class="stat-label">задоволених клієнтів</div>
+    </div>
+    <div>
+      <div class="stat-num">4 год</div>
+      <div class="stat-label">середній час прибирання</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">безпечна хімія</div>
+    </div>
+    <div>
+      <div class="stat-num">3 роки</div>
+      <div class="stat-label">на ринку Ужгорода</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-eyebrow">Наші послуги</div>
+    <h2 class="section-title">Все, що потрібно для чистоти у вашому домі</h2>
+    <p class="section-desc">Займаємось всіма видами прибирання — від регулярного до складного після ремонту.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Прибирання квартири</h3>
+        <p>Генеральне, підтримуюче або разове прибирання будь-якої квартири. Кімнати, кухня, ванна — все сяє.</p>
+        <span class="service-tag">Найпопулярніше</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛋️</div>
+        <h3>Хімчистка меблів і матраців</h3>
+        <p>Видаляємо плями, запахи та алергени з диванів, крісел, матраців. Сохне вже за 2–4 години.</p>
+        <span class="service-tag">Без хімічного запаху</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔨</div>
+        <h3>Прибирання після ремонту</h3>
+        <p>Пил від шпаклівки, слідів фарби, будівельного сміття — прибираємо повністю. Здаємо «під ключ».</p>
+        <span class="service-tag">Важкі випадки — наш профіль</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Офіси та комерційні приміщення</h3>
+        <p>Регулярне прибирання офісів, магазинів, ресторанів. Ранній виїзд до відкриття — без зупинки роботи.</p>
+        <span class="service-tag">Договір обслуговування</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE STACK -->
+<section class="value-bg">
+  <div class="section-inner">
+    <div class="section-eyebrow">Чому обирають нас</div>
+    <h2 class="section-title">Формула нашого результату</h2>
+    <p class="section-desc">Не просто «прибираємо» — даємо конкретний результат, у визначений час, без зайвих зусиль з вашого боку.</p>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-number">Результат</div>
+        <h3>Дім, в який хочеться повернутись</h3>
+        <p>Не «зробили прибирання», а — ваша квартира виглядає як після фотосесії для журналу.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-number">Впевненість</div>
+        <h3>Перевірені люди, безпечна хімія</h3>
+        <p>Всі співробітники пройшли перевірку. Хімія — дитячобезпечна, гіпоалергенна. Сертифікати наявні.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-number">Швидкість</div>
+        <h3>Сьогодні замовив — сьогодні чисто</h3>
+        <p>Виїзд у день замовлення по Ужгороду. Стандартна квартира — від 2 годин.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-number">Просто</div>
+        <h3>Вам нічого не потрібно робити</h3>
+        <p>Відчинили двері → пішли по своїх справах → повернулись до ідеальної чистоти.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="background: var(--white);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Як це працює</div>
+    <h2 class="section-title">4 кроки до чистоти</h2>
+    <p class="section-desc">Від замовлення до результату — жодних зайвих кроків.</p>
+    <div class="process-steps" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:12px;">
+      <div class="process-step">
+        <div class="step-circle">1</div>
+        <h3>Зв'яжіться з нами</h3>
+        <p>Telegram, Viber або дзвінок. Розкажіть що треба прибрати.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">2</div>
+        <h3>Домовляємось про час</h3>
+        <p>Погоджуємо зручний день і час. Часто виїжджаємо в той самий день.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">3</div>
+        <h3>Ми приїжджаємо і прибираємо</h3>
+        <p>Наша команда приїжджає зі своїм інвентарем і хімією. Від вас нічого не потрібно.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">4</div>
+        <h3>Ви приймаєте результат</h3>
+        <p>Перевіряєте разом з нами. Не задоволені — переробляємо безкоштовно.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER -->
+<section class="ba-section">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-eyebrow">Результати</div>
+    <h2 class="section-title" style="margin: 0 auto 16px;">До і після</h2>
+    <p class="section-desc" style="margin: 0 auto 40px;">Наш результат говорить сам за себе.</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-label before">До прибирання</div>
+        <div class="ba-visual">
+          <div class="ba-emoji">😰</div>
+          <div>Пил після ремонту, будівельний бруд, сліди фарби на всіх поверхнях</div>
+        </div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label after">Після нашої роботи</div>
+        <div class="ba-visual after-v">
+          <div class="ba-emoji">✨</div>
+          <div>Блискучо чисто, свіжий запах, готово до заселення або здачі</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:20px; font-size:14px; color:var(--muted);">Маємо сотні фото реальних робіт — питайте в Telegram</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--blue-soft);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Відгуки</div>
+    <h2 class="section-title">Що кажуть наші клієнти</h2>
+    <p class="section-desc">Реальні відгуки від людей, які замовили прибирання.</p>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>«Замовила хімчистку дивана після кота — результат неймовірний. Плями зникли, запаху немає взагалі. Приїхали в день замовлення, швидко і акуратно.»</p>
+        <div class="testi-author">
+          <div class="avatar">ОМ</div>
+          <div>
+            <div class="author-name">Олена М.</div>
+            <div class="author-meta">Ужгород, хімчистка дивана</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>«Після ремонту звернулись до них — квартира була в жахливому стані. За 5 годин прибрали все до блиску. Тепер замовляємо регулярне прибирання щомісяця.»</p>
+        <div class="testi-author">
+          <div class="avatar">ВК</div>
+          <div>
+            <div class="author-name">Василь К.</div>
+            <div class="author-meta">Ужгород, після ремонтне прибирання</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>«Прибирають офіс вже пів року. Завжди вчасно, завжди якісно. Персонал ввічливий і відповідальний. Рекомендую всім підприємцям Ужгорода.»</p>
+        <div class="testi-author">
+          <div class="avatar">ІС</div>
+          <div>
+            <div class="author-name">Іванна С.</div>
+            <div class="author-meta">Власниця магазину, регулярне прибирання</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<div class="guarantee">
+  <h2>Наша гарантія — чисто або безкоштовно</h2>
+  <p>Якщо ви не задоволені результатом — ми повертаємось і переробляємо безкоштовно. Або повертаємо гроші. Без питань.</p>
+  <div class="guarantee-cards">
+    <div class="g-card">
+      <div class="g-card-icon">🔒</div>
+      <div class="g-card-title">Перевірений персонал</div>
+      <div class="g-card-desc">Кожен співробітник пройшов перевірку і підписав NDA</div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-icon">🌿</div>
+      <div class="g-card-title">Безпечна хімія</div>
+      <div class="g-card-desc">Гіпоалергенні засоби, безпечно для дітей і тварин</div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-icon">↩️</div>
+      <div class="g-card-title">Гарантія повернення</div>
+      <div class="g-card-desc">Не сподобався результат — повернемо 100% оплати</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section style="background:var(--white);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Часті питання</div>
+    <h2 class="section-title">Все, що хвилює перед замовленням</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Чи можна залишити ключі і піти? <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Так. Більшість клієнтів так і роблять. Наш персонал підписав договір відповідальності. Після роботи надсилаємо фото результату у Telegram або Viber.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Чи безпечні засоби для дітей і тварин? <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Використовуємо виключно гіпоалергенну, сертифіковану хімію. Безпечно для дітей від 1 року та домашніх тварин. За потреби можемо показати сертифікати засобів.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Скільки часу займає прибирання? <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Стандартна 2-кімнатна квартира — 3–4 години. Після ремонту може займати 6–8 годин. Конкретний час узгоджуємо після опису обсягу робіт.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Що потрібно підготувати перед приїздом? <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Нічого. Ми приїжджаємо з усім своїм: інвентарем, пилосмоком, ганчірками, засобами. Ваше завдання — відчинити двері.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Як оплатити послуги? <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Оплата після роботи — готівкою або переказом на картку. Ніякої передоплати для нових клієнтів.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Чи є знижки для постійних клієнтів? <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Так! При регулярному замовленні (щотижня або щомісяця) — знижка 10–15%. Деталі обговорюємо індивідуально.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <h2>Замовте прибирання<br><span>прямо зараз</span></h2>
+  <p>Напишіть нам у Telegram або Viber — відповідаємо протягом 15 хвилин. Виїзд в день замовлення.</p>
+  <div class="cta-buttons">
+    <a href="https://t.me/cleaning_uzhhorod" class="btn-tg">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 14.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.496.969z"/></svg>
+      Написати в Telegram
+    </a>
+    <a href="tel:+380XXXXXXXXX" class="btn-phone">
+      📞 Подзвонити
+    </a>
+  </div>
+  <div class="cta-note">Або напишіть у Viber за тим самим номером · Без вихідних, з 8:00 до 21:00</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Клінінгові послуги Ужгород</strong><br>
+  Прибирання квартир · Хімчистка меблів та матраців · Після ремонтне прибирання · Офіси<br><br>
+  <span>м. Ужгород та Закарпатська область · © 2024</span>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
